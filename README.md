@@ -30,7 +30,7 @@ In the first example, I embedded the conditional statement within the link. You 
 
     <h1 class="post-title"><a href="{% if post.link %}{{post.link}}{% else %}{{ post.url }}{% endif %}">{{ post.title }}</a>{% if post.link %}<span class="link-arrow"> &rarr;</span>{% endif %}</h1>
 
-The second example is easier to read. Here, the html code is embedded in the conditional statement. This code can be found in the other example file (the `post.html` layout file), for which (like for any other layout file) you also need to use `post.` instead of `page.`:
+The second example is easier to read. Here, the html code is embedded in the conditional statement. This code can be found in the other example file (the `post.html` example file), for which (like for any other layout file) you also need to use `post.` instead of `page.`:
 
     {% if page.link %}
     	<h1 class="post-title"><a href="{{ page.link }}">{{ page.title }} <span class="link-arrow">&rarr;</span></a></h1>
