@@ -2,19 +2,19 @@
 
 ## Introduction
 
-The code in this repository enables you to make *linked list*-style posts with Jekyll. This type of post uses its headline as a link to the external source you comment on. In most cases these linked headlines are marked by a symbol, e.g. an arrow, to distinguish them from regular headlines which lead to the post page instead (cf. example files). One well known example of a linked list is [daring fireball](http://daringfireball.net).
+The code in this repository enables you to create *linked-list* style posts with Jekyll. This type of post uses its headline as a link an external source. In many cases these headlines are marked by a symbol, e.g. an arrow, to distinguish them from regular headlines go to the post's permalink (cf. example files). One well known example of a linked list is [Daring Fireball](http://daringfireball.net).
 
-Although link posts are a clean and reader-friendly format for short comments on external resources, there's a downside: if the headline of the article leads to an external URL, you can only reach the actual article page on your blog through your archive (if you have one). To provide your reader with a link to the post page, you can add its permalink to the post's metadata. Both example files contain a line that generates a permalink in the post's meta data.
+Although link posts are clean and reader-friendly for short comments on external resources, there's a downside: if the headline of the article leads to an external URL, you can only reach the actual article page on your blog through your archive (if you have one). To provide your reader with a link to the post page, you can add its permalink to the post's meta data. Both example files contain a line that generates a permalink in the post's meta data line.
 
-## How to use it
+## Getting started
 
-To create link posts, you need to add a variable called `link` followed by the external URL to your post's front matter. You also need to replace the liquid code generating post headlines in both `/index.html` and `/_layouts/post.html`. The new liquid code will check if a link is defined. If yes, it will insert an external link and the symbol. If no, it will insert the permalink to the post page.
+To create a link post, you need to add a variable called `link` followed by the external URL to its front matter. You also need to replace the liquid code generating post headlines in both `/index.html` and `/_layouts/post.html`. The new liquid code will check if a link is defined. If it is, it will insert the external url in the link and a right arrow at the end of the headline. If no link is defined, it will behave as in a standard installation.
 
-The same needs to be done for any other layout file in which you want to use external links for the headlines. For example, if you want to use them with pages, you also have to add it to `/layouts/page.html`.
+The same change needs to be applied in any other layout file in which external links should be used for the headlines. If for example you want to use them with pages, you also have to modify `/layouts/page.html`.
 
 ### YAML frontmatter
 
-This is simple. Your YAML frontmatter should look like this for Youtube videos:
+Your YAML front matter of a link post should contain the ´link´ variable:
 
     ---
     title: Congratulations, Pinboard - The User-Friendly Bookmarking Site Turns Five
@@ -24,13 +24,13 @@ This is simple. Your YAML frontmatter should look like this for Youtube videos:
 
 ### Template and layout files
 
-In `/index.html`, you need to replace the line generating post headlines in the loop with one of the following code blocks. The simple conditional statement checks whether an external link is present in a post's front matter and, if yes, creates an external link instead of a permalink.
+In `/index.html`, you need to replace the line in the loop generating post headlines with one of the following code blocks. The simple conditional statement checks whether an external link is present in the post's front matter and, if yes, creates an external link instead of a permalink.
 
 In the first example, the conditional statement is embedded within the link. This version is also used in this repository's `index.html` example file:
 
-    <h1 class="post-title"><a href="{% if post.link %}{{post.link}}{% else %}{{ post.url }}{% endif %}">{{ post.title }}</a>{% if post.link %}<span class="link-arrow"> &rarr;</span>{% endif %}</h1>
+    <h1 class="post-title"><a href="{% if post.link %}{{ post.link }}{% else %}{{ post.url }}{% endif %}">{{ post.title }}</a>{% if post.link %}<span class="link-arrow"> &rarr;</span>{% endif %}</h1>
 
-The second example is easier to read. Here, it's the other way around: the html code is embedded in the conditional statement. This code can be found in the `post.html` example file. In layout files, don't forget to prefix the variables with `post.` instead of `page.`:
+In the second example the html code is embedded in the conditional statement. This code can be found in the `post.html` example file. In layout files, don't forget to prefix the variables with `post.` instead of `page.`:
 
     {% if page.link %}
     	<h1 class="post-title"><a href="{{ page.link }}">{{ page.title }} <span class="link-arrow">&rarr;</span></a></h1>
