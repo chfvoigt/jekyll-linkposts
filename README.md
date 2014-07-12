@@ -22,7 +22,7 @@ This is simple. Your YAML frontmatter should look like this for Youtube videos:
     link: https://blog.pinboard.in/2014/07/pinboard_turns_five/
     ---
 
-### .html files
+### Template and layout files
 
 In `/index.html`, you need to replace the line generating post headlines in the loop with one of the following code blocks. The simple conditional statement checks whether an external link is present in a post's front matter and, if yes, creates an external link instead of a permalink.
 
